@@ -19,14 +19,6 @@ if n < d
 end
 
 
-% normalize data
-if isempty(support)
-    support=[-1 1];
-    X=normalize(X);
-    Y=normalize(Y);
-end
-
-
 markovOrder=1;
 ytox=te_hist(X,Y,markovOrder,timeDownSample, numberOfBins, support);
         
@@ -140,18 +132,3 @@ for ii=1:nbins-2
         end
     end
 end
-
-
-function X=normalize(X)
-
-% normalize
-% X=X-min(X(:)); X=X/max(X(:)); X=X*2-1;
-[d, n]=size(X);
-if n < d
-    error('input data should be of the form d x n where d is the dimension');
-end
-
-X=X-min(X,[],2)*ones(1,n);
-
-X=X./(max(X,[],2)*ones(1,n));
-X=X*2-1;

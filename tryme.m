@@ -65,6 +65,7 @@ for jj=1:numel(pdata)
     kk=kk+npd;
 end
 err=sum(est.lidx-data(1).lidx ~=0)/numel(data(1).lidx);
+fprintf('err=%.3f percent \n', err*100);
 
 figure(1); gcf; clf;
 plot(data(1).lidx, 'k', 'linewidth', 4);

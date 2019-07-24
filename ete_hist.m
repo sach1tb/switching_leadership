@@ -73,9 +73,9 @@ for ii=1:nbins-1
     for jj=1:nbins-1
         for kk=1:nbins-1
             % the same markovOrder is used since we are using a logical operator
-            pXXY(ii,jj,kk)=sum(Xchain(1,:)>=bins(ii) & Xchain(1,:)<=bins(ii+1) & ...
-                               Xchain(2,:)>=bins(jj) & Xchain(2,:)<=bins(jj+1) & ...
-                               Y>=bins(kk) & Y<=bins(kk+1));
+            pXXY(ii,jj,kk)=sum(Xchain(1,:)>bins(ii) & Xchain(1,:)<=bins(ii+1) & ...
+                               Xchain(2,:)>bins(jj) & Xchain(2,:)<=bins(jj+1) & ...
+                               Y>bins(kk) & Y<=bins(kk+1));
         end
     end
 end
@@ -87,8 +87,8 @@ pXXY=pXXY/sum(pXXY(:));
 pXY=zeros(nbins-1, nbins-1);
 for jj=1:nbins-1
     for kk=1:nbins-1
-        pXY(jj,kk)=sum(Xchain(2,:)>=bins(jj) & Xchain(2,:)<=bins(jj+1) & ...
-                               Y>=bins(kk) & Y<=bins(kk+1));
+        pXY(jj,kk)=sum(Xchain(2,:)>bins(jj) & Xchain(2,:)<=bins(jj+1) & ...
+                               Y>bins(kk) & Y<=bins(kk+1));
     end
 end
 pXY=pXY(2:end,2:end);
@@ -99,8 +99,8 @@ pXY=pXY/sum(pXY(:));
 pXX=zeros(nbins-1,nbins-1);
 for ii=1:nbins-1
     for jj=1:nbins-1
-        pXX(ii,jj)=sum(Xchain(1,:)>=bins(ii) & Xchain(1,:)<=bins(ii+1) & ...
-                               Xchain(2,:)>=bins(jj) & Xchain(2,:)<=bins(jj+1));
+        pXX(ii,jj)=sum(Xchain(1,:)>bins(ii) & Xchain(1,:)<=bins(ii+1) & ...
+                               Xchain(2,:)>bins(jj) & Xchain(2,:)<=bins(jj+1));
     end
 end
 pXX=pXX(2:end,2:end);
@@ -110,7 +110,7 @@ pXX=pXX/sum(pXX(:));
 % p(X[markovOrder-1])
 pXm1=zeros(nbins-1,1);
 for jj=1:nbins-1
-    pXm1(jj)=sum(Xchain(2,:)>=bins(jj) & Xchain(2,:)<=bins(jj+1));
+    pXm1(jj)=sum(Xchain(2,:)>bins(jj) & Xchain(2,:)<=bins(jj+1));
 end
 pXm1=pXm1(2:end);
 pXm1=pXm1/sum(pXm1(:));
